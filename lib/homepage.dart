@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:abidkhan/about_tab.dart';
 import 'package:abidkhan/quote_tab.dart';
+import 'package:abidkhan/responsive_widget.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,13 +13,29 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-            // color: Colors.blue,
             child: Center(
-                child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: <Widget>[AboutTab(), QuoteTab()],
-            ))));
+                child: SingleChildScrollView(
+                    child: ResponsiveWidget(
+      largeScreen: buildContent(largeScreen: true),
+      mediumScreen: buildContent(mediumScreen: true),
+      smallScreen: buildContent(mediumScreen: true),
+    )))));
+  }
+
+  Widget buildContent({largeScreen: false, mediumScreen: false}) {
+    if (largeScreen) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        children: <Widget>[AboutTab(), QuoteTab()],
+      );
+    }
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      children: <Widget>[AboutTab(), QuoteTab()],
+    );
   }
 }

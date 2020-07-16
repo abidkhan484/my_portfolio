@@ -1,5 +1,6 @@
 import 'package:abidkhan/config/assets.dart';
 import 'package:abidkhan/config/constants.dart';
+import 'package:abidkhan/responsive_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:html' as html;
@@ -10,7 +11,7 @@ class AboutTab extends StatelessWidget {
     return SingleChildScrollView(
       child: Center(
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.only(left: 16, top: 50, bottom: 16),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,51 +38,77 @@ class AboutTab extends StatelessWidget {
               SizedBox(
                 height: 40,
               ),
-              Row(
+              ResponsiveWidget(largeScreen: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  FlatButton.icon(
-                      onPressed: () => html.window
-                          .open(Constants.PROFILE_LINKEDIN, 'abidkhan'),
-                      icon: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: Image.asset(Assets.linkedin),
-                      ),
-                      label: Text('Linkedin')),
-                  FlatButton.icon(
-                      onPressed: () => html.window
-                          .open(Constants.PROFILE_GITHUB, 'abidkhan'),
-                      icon: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: Image.asset(Assets.github),
-                      ),
-                      label: Text('Github')),
-                  FlatButton.icon(
-                      onPressed: () => html.window
-                          .open(Constants.PROFILE_FACEBOOK, 'abidkhan'),
-                      icon: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: Image.asset(Assets.facebook),
-                      ),
-                      label: Text('Facebook')),
-                  FlatButton.icon(
-                      onPressed: () => html.window
-                          .open(Constants.PROFILE_TWITTER, 'abidkhan'),
-                      icon: SizedBox(
-                        height: 20,
-                        width: 20,
-                        child: Image.asset(Assets.twitter),
-                      ),
-                      label: Text("Twitter"))
+                  ProfessionalMediaIcons(),
+                  SocialMediaIcons()
                 ],
-              ),
+              ), smallScreen: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  ProfessionalMediaIcons(),
+                  SocialMediaIcons()
+                ],
+              ),),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget ProfessionalMediaIcons() {
+    return Container(
+        child: Row(
+      children: <Widget>[
+        FlatButton.icon(
+            onPressed: () =>
+                html.window.open(Constants.PROFILE_LINKEDIN, 'abidkhan'),
+            icon: SizedBox(
+              height: 20,
+              width: 20,
+              child: Image.asset(Assets.linkedin),
+            ),
+            label: Text('Linkedin')),
+        FlatButton.icon(
+            onPressed: () =>
+                html.window.open(Constants.PROFILE_GITHUB, 'abidkhan'),
+            icon: SizedBox(
+              height: 20,
+              width: 20,
+              child: Image.asset(Assets.github),
+            ),
+            label: Text('Github'))
+      ],
+    ));
+  }
+
+  Widget SocialMediaIcons() {
+    return Container(
+      child: Row(
+        children: <Widget>[
+          FlatButton.icon(
+              onPressed: () =>
+                  html.window.open(Constants.PROFILE_FACEBOOK, 'abidkhan'),
+              icon: SizedBox(
+                height: 20,
+                width: 20,
+                child: Image.asset(Assets.facebook),
+              ),
+              label: Text('Facebook')),
+          FlatButton.icon(
+              onPressed: () =>
+                  html.window.open(Constants.PROFILE_TWITTER, 'abidkhan'),
+              icon: SizedBox(
+                height: 20,
+                width: 20,
+                child: Image.asset(Assets.twitter),
+              ),
+              label: Text("Twitter"))
+        ],
       ),
     );
   }

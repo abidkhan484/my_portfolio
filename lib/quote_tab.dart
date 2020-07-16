@@ -14,7 +14,7 @@ class QuoteTab extends StatelessWidget {
               height: 270,
               width: 240,
               child: TypewriterAnimatedTextKit(
-                  text: ['"Remember, Red, \nhope is a good thing, \nmaybe the best of things, \nand no good thing ever dies."\n\n-Andy'],
+                  text: ['"Remember, Red, \nhope is a good thing, \nmaybe the best of things, \nand no good thing ever dies."\n\t\t\t-Andy'],
                   speed: Duration(milliseconds: 100),
                   pause: Duration(seconds: 2),
                   textStyle: TextStyle(fontFamily: 'AgencyFB', fontSize: 30),
